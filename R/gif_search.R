@@ -1,6 +1,7 @@
 #' Search GIFs by key words throught giphy API
 #'
 #' @importFrom httr GET content
+#' @import shiny miniUI
 #' @export
 gif_search <- function(query, limit = 10, offset = 0, rating = "g",
                        img_format = c(

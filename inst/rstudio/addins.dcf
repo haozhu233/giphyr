@@ -1,0 +1,4 @@
+Name: Search Giphy
+Description: Search GIFs through Giphy
+Binding: gif_Addin
+Interactive: true
