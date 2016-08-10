@@ -11,7 +11,7 @@ gif_Addin <- function() {
     tags$head(
       includeCSS(system.file("gadgets/gif_Addin/app.css", package = "giphyr"))
     ),
-    gadgetTitleBar("Find GIFs"),
+    gadgetTitleBar("Add GIFs"),
     miniContentPanel(
       fillRow(flex = c(1, 1, 7, 3, 3), height = "45px",
               uiOutput("back_button"), uiOutput("forward_button"),
