@@ -10,8 +10,11 @@ Depends:
 Imports:
     httr,
     shiny,
-    miniUI
-License: MIT
+    miniUI,
+    tibble,
+    rstudioapi,
+    utils
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/haozhu233/giphyr

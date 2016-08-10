@@ -1,63 +1,140 @@
+#' @importFrom shiny h4 fillRow htmlOutput renderUI textInput actionButton req
+#' HTML observeEvent stopApp dialogViewer runGadget uiOutput actionLink icon
+#' reactiveValues reactive includeCSS includeScript tags
+#' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
+#' @importFrom rstudioapi insertText
+#' @importFrom utils download.file
 gif_Addin <- function() {
   ui <- miniPage(
+    tags$head(
+      includeCSS(system.file("gadgets/gif_Addin/app.css", package = "giphyr"))
+    ),
     gadgetTitleBar("Find GIFs"),
     miniContentPanel(
-      fillRow(flex = c(7, 3), height = "45px",
-              uiOutput("gif_search_box"), uiOutput("gif_search_button")),
-      htmlOutput("preview")
-    )
+      fillRow(flex = c(1, 1, 7, 3, 3), height = "45px",
+              uiOutput("back_button"), uiOutput("forward_button"),
+              uiOutput("gif_search_box"),
+              uiOutput("download_gif_button"), uiOutput("insert_gif_button")),
+      uiOutput("preview")
+      # uiOutput("space_holder")
+    ),
+    includeScript(system.file("gadgets/gif_Addin/app.js", package = "giphyr"))
   )
 
   server <- function(input, output, session) {
     output$gif_search_box <- renderUI({
       textInput("search_text", label = NULL,
-                placeholder = "Search All the GIFs", width = "98%")
+                placeholder = "Search all the GIFs",
+                width = "98%")
     })
 
-    output$gif_search_button <- renderUI({
-      actionButton("search_button", label = "Search",
-                   icon = icon("search"),
-                   width = "100%", class="btn-primary")
+    output$download_gif_button <- renderUI({
+      actionButton("download_gif", label = "Download",
+                   icon = icon("download"),
+                   width = "95%", class="btn-primary")
+    })
+
+    output$insert_gif_button <- renderUI({
+      actionButton("insert_gif", label = "Insert to Rmd",
+                   icon = icon("file-text-o"),
+                   width = "95%", class="btn-success")
+    })
+
+    output$back_button <- renderUI({
+      actionButton("pagination_back", label = NULL, width = "95%",
+                   icon = icon("angle-double-left"))
+    })
+
+    output$forward_button <- renderUI({
+      actionButton("pagination_forward", label = NULL, width = "95%",
+                   icon = icon("angle-double-right"))
+    })
+
+    values <- reactiveValues(offset = 0)
+
+    observeEvent(input$pagination_back, {
+      if (values$offset >= 10){
+        values$offset = values$offset - 10
+      }else{
+        if(values$offset > 0){
+          values$offset = 0
+        }
+      }
+    })
+
+    observeEvent(input$pagination_forward, {
+        values$offset = values$offset + 10
+    })
+
+    observeEvent(input$search_text, {
+      values$offset = 0
     })
 
     preview_gifs <- reactive({
       req(input$search_text)
-      out <- gif_search(input$search_text, img_format = "fixed_height_small")
-      out <- out[, c("id", "fixed_height_small")]
+      out <- suppressWarnings(
+        gif_search(input$search_text,
+                   img_format = c("fixed_height_small", "original"),
+                   offset = values$offset))
+      if(is.null(out)){return(NULL)}
+      out <- out[, c("id", "slug", "fixed_height_small", "original")]
       return(out)
     })
 
-    output$preview <- function(){
-      req(input$search_text)
-      HTML(
-        paste0(paste0("<img src='", preview_gifs()$fixed_height_small, "'>"),
-               collapse = "\n")
-      )
-    }
+    output$preview <- renderUI({
+      req(preview_gifs())
+      apply(preview_gifs(), 1, function(x){
+        actionLink(x[1], title=x[2], label = NULL, class = "gifpreview",
+                   tags$img(src=x[3]))
+      })
+    })
 
-
-    # observeEvent(input$search_button, {
-    #   bib_to_write <- suppressWarnings(try(cr_cn(dois = input$entered_dois),
-    #                                        silent = TRUE))
-    #   if(class(bib_to_write) != "try-error"){
-    #     if(!"crossref.bib" %in% list.files()){file.create("crossref.bib")}
-    #     bib_to_write <- correct_bib(bib_to_write)
-    #     write(paste0(bib_to_write, "\n"), "crossref.bib", append = T)
-    #     updateTextInput(session, "entered_dois", value = "")
-    #     preview_message$added <- 1
-    #     preview_message$error <- 0
-    #   }else{
-    #     updateTextInput(session, "entered_dois", value = "")
-    #     preview_message$added <- 0
-    #     preview_message$error <- 1
-    #   }
-    # })
+    # output$space_holder <- function(){
+    #   if(is.null(input$search_text))return(NULL)
+    #   if(input$search_text != "")return(NULL)
+    #   HTML(
+    #     '<div class="spaceHolder text-center"><p>1. Search</p><p>2. Select</p>',
+    #     '<p>3. Insert</p></div>'
+    #   )
+    # }
 
     observeEvent(input$done, {
       invisible(stopApp())
     })
+
+    observeEvent(input$download_gif, {
+      if(!is.null(input$clickedgif) & !is.null(input$search_text)){
+        dir.create("img", showWarnings = F)
+        dl_file_name <- paste0(
+          "img/", search_query_parser(input$search_text),
+          "_", input$clickedgif, ".gif"
+        )
+        status <- try(download.file(
+          preview_gifs()$original[preview_gifs()$id == input$clickedgif],
+          dl_file_name
+        ), silent = T)
+      }
+    })
+
+    observeEvent(input$insert_gif, {
+      if(!is.null(input$clickedgif) & !is.null(input$search_text)){
+        dir.create("img", showWarnings = F)
+        dl_file_name <- paste0(
+          "img/", search_query_parser(input$search_text),
+          "_", input$clickedgif, ".gif"
+        )
+        status <- try(download.file(
+          preview_gifs()$original[preview_gifs()$id == input$clickedgif],
+          dl_file_name
+        ), silent = T)
+        rstudioapi::insertText(
+          paste0('\n![', search_query_parser(input$search_text), "](",
+                 dl_file_name, ")\n")
+        )
+      }
+    })
   }
 
-  viewer <- dialogViewer("Add Crossref Citations", width = 600, height = 800)
+  viewer <- dialogViewer("Add Crossref Citations", width = 800, height = 800)
   runGadget(ui, server, viewer = viewer)
 }

@@ -1,7 +1,22 @@
 #' Search GIFs by key words throught giphy API
 #'
+#' @param query search query term or phrase.
+#' @param limit (optional) number of results to return, maximum 100. Default 10.
+#' @param offset (optional) results offset, defaults to 0.
+#' @param rating limit results to those rated (y,g, pg, pg-13 or r). Default g.
+#' @param img_format A vector of strings deciding what formats of images you
+#' want to receive. Possible options are "fixed_height", "fixed_height_still",
+#' "fixed_height_downsampled", "fixed_width", "fixed_width_still",
+#' "fixed_width_downsampled", "fixed_height_small", "fixed_height_small_still",
+#' "fixed_width_small", "fixed_width_small_still", "downsized",
+#' "downsized_still", "downsized_large", "original", "original_still". An Image
+#' with fixed height or width has a fixed length of the edge at 200px. A small
+#' fixed height or width images has a 100px-long fixed edge. "Downsampled"
+#' images are compressed and are good for preview. "Still" images is not a GIF
+#' and will not be animated.
+#'
 #' @importFrom httr GET content
-#' @import shiny miniUI
+#' @importFrom tibble as_tibble
 #' @export
 gif_search <- function(query, limit = 10, offset = 0, rating = "g",
                        img_format = c(
@@ -50,7 +65,11 @@ gif_search <- function(query, limit = 10, offset = 0, rating = "g",
     return()
   }
 
-  out <- content_exporter(search_content, img_format)
+  if(search_content$pagination$total_count == 1){
+    out <- content_exporter_for_one(search_content, img_format)
+  }else{
+    out <- content_exporter(search_content, img_format)
+  }
 
   return(out)
 }
@@ -79,9 +98,17 @@ content_exporter_2 <- function(item, x){
 
 content_exporter <- function(x, item){
   cbind(
-    as.data.frame(sapply(c("id", "slug", "url", "source", "rating"),
+    as_tibble(sapply(c("id", "slug", "url", "source", "rating"),
                          content_exporter_1, x)),
-    as.data.frame(sapply(item,
+    as_tibble(sapply(item,
                          content_exporter_2, x))
   )
+}
+
+content_exporter_for_one <- function(x, item){
+  out <- as_tibble(t(data.frame(c(
+    sapply(c("id", "slug", "url", "source", "rating"), content_exporter_1, x),
+    sapply(item, content_exporter_2, x)))))
+  row.names(out) <- NULL
+  return(out)
 }
