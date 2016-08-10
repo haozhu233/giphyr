@@ -1,10 +1,12 @@
 #' @importFrom shiny h4 fillRow htmlOutput renderUI textInput actionButton req
 #' HTML observeEvent stopApp dialogViewer runGadget uiOutput actionLink icon
-#' reactiveValues reactive includeCSS includeScript tags
+#' reactiveValues reactive includeCSS includeScript tags img addResourcePath
 #' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
 #' @importFrom rstudioapi insertText
 #' @importFrom utils download.file
 gif_Addin <- function() {
+  addResourcePath("rsc",
+                  system.file("gadgets/gif_Addin", package = "giphyr"))
   ui <- miniPage(
     tags$head(
       includeCSS(system.file("gadgets/gif_Addin/app.css", package = "giphyr"))
@@ -15,8 +17,9 @@ gif_Addin <- function() {
               uiOutput("back_button"), uiOutput("forward_button"),
               uiOutput("gif_search_box"),
               uiOutput("download_gif_button"), uiOutput("insert_gif_button")),
-      uiOutput("preview")
-      # uiOutput("space_holder")
+      uiOutput("preview"),
+      tags$div(class="giphylogo",
+               img(src=file.path("rsc/giphy.png"), width = 100))
     ),
     includeScript(system.file("gadgets/gif_Addin/app.js", package = "giphyr"))
   )
@@ -128,7 +131,7 @@ gif_Addin <- function() {
           dl_file_name
         ), silent = T)
         rstudioapi::insertText(
-          paste0('\n![', search_query_parser(input$search_text), "](",
+          paste0('![', search_query_parser(input$search_text), "](",
                  dl_file_name, ")\n")
         )
       }

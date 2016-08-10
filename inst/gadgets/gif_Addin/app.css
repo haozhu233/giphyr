@@ -12,3 +12,9 @@
   font-size: 32px;
   color: #999;
 }
+
+.giphylogo{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
