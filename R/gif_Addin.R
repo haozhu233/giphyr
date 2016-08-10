@@ -140,6 +140,6 @@ gif_Addin <- function() {
     })
   }
 
-  viewer <- dialogViewer("Add Crossref Citations", width = 800, height = 800)
+  viewer <- dialogViewer("Add GIFs", width = 800, height = 800)
   runGadget(ui, server, viewer = viewer)
 }
