@@ -18,6 +18,7 @@ gif_Addin <- function() {
               uiOutput("gif_search_box"),
               uiOutput("download_gif_button"), uiOutput("insert_gif_button")),
       uiOutput("preview"),
+      htmlOutput("space_holder"),
       tags$div(class="giphylogo",
                img(src=file.path("rsc/giphy.png"), width = 100))
     ),
@@ -92,14 +93,15 @@ gif_Addin <- function() {
       })
     })
 
-    # output$space_holder <- function(){
-    #   if(is.null(input$search_text))return(NULL)
-    #   if(input$search_text != "")return(NULL)
-    #   HTML(
-    #     '<div class="spaceHolder text-center"><p>1. Search</p><p>2. Select</p>',
-    #     '<p>3. Insert</p></div>'
-    #   )
-    # }
+    output$space_holder <- function(){
+      if(is.null(input$search_text))return(NULL)
+      if(input$search_text != "")return(NULL)
+      HTML(
+        '<div class="spaceHolder"><p>Step 1. Search any keywords</p>',
+        '<p>Step 2. Select a GIF you like</p><p>Step 3. Download it or directly ',
+        'insert that to your Rmarkdown.</p></div>'
+      )
+    }
 
     observeEvent(input$done, {
       invisible(stopApp())

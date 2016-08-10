@@ -9,8 +9,10 @@
 }
 
 .spaceHolder {
-  font-size: 32px;
+  font-size: 24px;
   color: #999;
+  margin-top: 50px;
+  margin-left: 50px;
 }
 
 .giphylogo{
