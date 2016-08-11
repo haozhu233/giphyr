@@ -6,7 +6,7 @@ Description: An interface to the 'Giphy' API to download GIFs and animated
     stickers from 'Giphy'. It aims to make it easier to add a GIF to a rmarkdown
     document or presentation.
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.2.2)
 Imports:
     httr,
     shiny,
