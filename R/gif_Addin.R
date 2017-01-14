@@ -46,12 +46,12 @@ gif_Addin <- function() {
 
     output$back_button <- renderUI({
       actionButton("pagination_back", label = NULL, width = "95%",
-                   icon = icon("angle-double-left"))
+                   icon = icon("arrow-left"))
     })
 
     output$forward_button <- renderUI({
       actionButton("pagination_forward", label = NULL, width = "95%",
-                   icon = icon("angle-double-right"))
+                   icon = icon("arrow-right"))
     })
 
     values <- reactiveValues(offset = 0)
@@ -89,6 +89,7 @@ gif_Addin <- function() {
       req(preview_gifs())
       apply(preview_gifs(), 1, function(x){
         actionLink(x[1], title=x[2], label = NULL, class = "gifpreview",
+                   icon = NULL,
                    tags$img(src=x[3]))
       })
     })
