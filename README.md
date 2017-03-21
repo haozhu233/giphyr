@@ -1,4 +1,8 @@
 # giphyr
+![CRAN_version](http://www.r-pkg.org/badges/version/giphyr)
+![CRAN_download](http://cranlogs.r-pkg.org/badges/giphyr)
+
+
 Want to add some GIFs to your awesome rmarkdown presentation?
 
 ![exciting](https://raw.githubusercontent.com/haozhu233/giphyr/master/img/exciting_rDbelKPujYEBq.gif)
@@ -10,7 +14,11 @@ No more to say. Enjoy more GIFs in your Rmarkdown documents.
 
 ![Screenshot](https://raw.githubusercontent.com/haozhu233/giphyr/master/img/Screenshot.png)
 
+## Install
 ```r
+install.packages("giphyr")
+
+# For dev version
 devtools::install_github("haozhu233/giphyr")
 ```
 
