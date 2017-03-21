@@ -24,7 +24,7 @@ gif_search <- function(query, limit = 10, offset = 0, rating = "g",
                          "fixed_width_still", "fixed_width_downsampled",
                          "fixed_height_small", "fixed_height_small_still",
                          "fixed_width_small", "fixed_width_small_still",
-                         "downsized_medium",
+                         "preview_gif", "downsized_medium",
                          "downsized", "downsized_still", "downsized_large",
                          "original", "original_still")
                       ){
@@ -36,7 +36,7 @@ gif_search <- function(query, limit = 10, offset = 0, rating = "g",
       "fixed_width_still", "fixed_width_downsampled",
       "fixed_height_small", "fixed_height_small_still",
       "fixed_width_small", "fixed_width_small_still",
-      "downsized_medium",
+      "preview_gif", "downsized_medium",
       "downsized", "downsized_still", "downsized_large",
       "original", "original_still"), several.ok = TRUE
     )

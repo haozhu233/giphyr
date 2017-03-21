@@ -15,7 +15,7 @@ gif_Addin <- function() {
               uiOutput("gif_search_box"),
               uiOutput("download_gif_button"),
               uiOutput("insert_gif_button")),
-      fillRow(flex = c(1, 1), height = "55px",
+      fillRow(flex = c(3, 2), height = "55px",
               uiOutput("rating_ui"),
               uiOutput("download_size_ui")),
       uiOutput("preview"),
@@ -64,7 +64,7 @@ gif_Addin <- function() {
     output$download_size_ui <- renderUI({
       radioButtons(
         "download_size",
-        HTML('Download Size: <sup><i class="fa fa-question-circle-o" title',
+        HTML('Download file size: <sup><i class="fa fa-question-circle-o" title',
              '="medium: max 2mb; large: max 5mb"></i></sup>'),
         c("medium" = "downsized", "large" = "downsized_medium", "original"),
         inline = T)
@@ -188,13 +188,13 @@ gif_Addin <- function() {
       )
       app_tips <- c(
         '<i class="fa fa-gift"></i> will drop you at a random page. Use it to discover more fun gifs!',
-        'GIPHY API can only export the first 5000 gifs. :(',
-        'Downloaded gifs are save in the "img" folder in your project directory.',
-        "For download size, medium: file < 2 MB, large: file < 5 MB & original: no restriction."
+        'Unfortunately, GIPHY API can only export the first 5000 gifs. :(',
+        'Downloaded gifs are saved in the "img" folder in your project directory.',
+        "For download file sizes, <code>medium</code>: file < 2 MB, <code>large</code>: file < 5 MB & <code>original</code>: no restriction."
       )
       HTML(
         '<div class="spaceHolder">', app_message,
-        'Tips: ', app_tips[sample(1:length(app_tips), 1)],
+        'Tip: <br>', app_tips[sample(1:length(app_tips), 1)],
         '</div>'
       )
     }
