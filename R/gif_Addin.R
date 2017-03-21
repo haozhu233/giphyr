@@ -149,7 +149,7 @@ gif_Addin <- function() {
     output$pagination_note <- function() {
       req(preview_gifs())
       page_note <- paste(
-        attr(preview_gifs(), "offset"), "~",
+        attr(preview_gifs(), "offset") + 1, "~",
         attr(preview_gifs(), "offset") + attr(preview_gifs(), "count"),
         "of", attr(preview_gifs(), "total_count")
       )
