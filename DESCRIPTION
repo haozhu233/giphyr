@@ -2,7 +2,7 @@ Package: giphyr
 Title: R Interface to the 'Giphy' API
 Version: 0.1.0
 Authors@R: person("Hao", "Zhu", email = "haozhu233@gmail.com", role = c("aut", "cre"))
-Description: An interface to the 'Giphy' API to download 'GIFs' and animated
+Description: An interface to the 'Giphy' 'API' to download 'GIFs' and animated
     stickers from 'giphy.com'. It comes with a 'RStudio Addin' that allows users
     to easily add 'GIFs' to their 'rmarkdown' presentations. 
 Depends:
