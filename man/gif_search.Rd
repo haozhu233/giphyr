@@ -8,9 +8,11 @@ gif_search(query, limit = 10, offset = 0, rating = "g",
   img_format = c("fixed_height", "fixed_height_still",
   "fixed_height_downsampled", "fixed_width", "fixed_width_still",
   "fixed_width_downsampled", "fixed_height_small", "fixed_height_small_still",
-  "fixed_width_small", "fixed_width_small_still", "preview_gif",
-  "downsized_medium", "downsized", "downsized_still", "downsized_large",
-  "original", "original_still"))
+  "fixed_width_small", "fixed_width_small_still", "downsized",
+  "downsized_still", "downsized_large", "downsized_medium", "original",
+  "original_still", "preview_gif", "fixed_height_mp4", "fixed_width_mp4",
+  "fixed_height_small_mp4", "fixed_width_small_mp4", "original_mp4",
+  "looping_mp4", "preview_mp4", "downsized_small_mp4"))
 }
 \arguments{
 \item{query}{search query term or phrase.}
@@ -22,12 +24,14 @@ gif_search(query, limit = 10, offset = 0, rating = "g",
 \item{rating}{limit results to those rated (y,g, pg, pg-13 or r). Default g.}
 
 \item{img_format}{A vector of strings deciding what formats of images you
-want to receive. Possible options are "fixed_height", "fixed_height_still",
-"fixed_height_downsampled", "fixed_width", "fixed_width_still",
-"fixed_width_downsampled", "fixed_height_small", "fixed_height_small_still",
-"fixed_width_small", "fixed_width_small_still", "downsized",
-"downsized_medium", "downsized_still", "downsized_large",
-"original" and "original_still". An Image
+want to receive. Possible options include "fixed_height",
+"fixed_height_still", "fixed_height_downsampled", "fixed_width",
+"fixed_width_still", "fixed_width_downsampled", "fixed_height_small",
+"fixed_height_small_still", "fixed_width_small", "fixed_width_small_still",
+"downsized", "downsized_still", "downsized_large", "downsized_medium",
+"original", "original_still", "preview_gif", "fixed_height_mp4",
+"fixed_width_mp4", "fixed_height_small_mp4", "fixed_width_small_mp4",
+"original_mp4", "looping_mp4", "preview_mp4" & "downsized_small_mp4". An Image
 with fixed height or width has a fixed length of the edge at 200px. A small
 fixed height or width images has a 100px-long fixed edge. "Downsampled"
 images are compressed and are good for preview. "Still" images is not a GIF
@@ -35,4 +39,10 @@ and will not be animated.}
 }
 \description{
 Search GIFs by key words throught giphy API
+}
+\examples{
+gif_search("cat")
+gif_search("dog", img_format = "downsized")
+gif_search("panda", limit = 100, img_format = "downsized_small_mp4")
+
 }

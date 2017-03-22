@@ -5,7 +5,7 @@
 }
 
 .gifselected {
-  box-shadow: 0 1px 1px 2px #337ab7;
+  box-shadow: 0 1px 1px 2px #377BB5;
   background-color: #fff;
   position: relative;
 }
@@ -26,8 +26,8 @@
 
 .gifselected::after {
     border-width: 0.75em;
-    border-right-color: #337ab7;
-    border-top-color: #337ab7;
+    border-right-color: #377BB5;
+    border-top-color: #377BB5;
 }
 
 .spaceHolder {

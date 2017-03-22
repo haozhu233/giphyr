@@ -9,6 +9,7 @@
 #' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
 #' @importFrom rstudioapi insertText
 #' @importFrom utils download.file
+#' @importFrom purrr map_df
 #' @name giphyr-package
 #' @aliases giphyr
 #' @docType package
