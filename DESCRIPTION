@@ -1,10 +1,10 @@
 Package: giphyr
 Title: R Interface to the 'Giphy' 'API'
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: person("Hao", "Zhu", email = "haozhu233@gmail.com", role = c("aut", "cre"))
 Description: An interface to the 'API' of 'Giphy', a popular index-based search 
     engine for 'GIFs' and animated stickers (see <http://giphy.com/faq> and 
-    <https://github.com/Giphy/GiphyAPI> for more information about `Giphy` and 
+    <https://github.com/Giphy/GiphyAPI> for more information about 'Giphy' and 
     its 'API') . This package also provides a 'RStudio Addin', which can help 
     users easily search and download 'GIFs' and insert them to a 'rmarkdown' 
     presentation. 
