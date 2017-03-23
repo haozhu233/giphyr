@@ -25,7 +25,7 @@ devtools::install_github("haozhu233/giphyr")
 ## Usage
 If you are using a recent version of RStudio (v0.99.878 or later), you should be able to find an "Addins" dropdown menu on the toolbar. This package comes with a RStudio Addin called "Add GIFs", which has a user friendly interface you can use to browse, download or insert GIFs or links to a rmarkdown document. 
 
-![](https://raw.githubusercontent.com/haozhu233/giphyr/master/img/rstudio_addins.png | width=200)
+<img src='https://raw.githubusercontent.com/haozhu233/giphyr/master/img/rstudio_addins.png' width='400'></img>
 
 For useRs who are not using RStudio, I'm planning to include a stand-alone shiny app that can be run directly in the console in the next release. 
 
