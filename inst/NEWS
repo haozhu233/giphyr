@@ -4,7 +4,7 @@ giphyr 0.1.1
 * Added a stand alone `add_gifs()` function to start the addin outside of
   RStudio.
 
-* Add `dplyr` to imports to accomendate incoming purrr release.
+* Add `dplyr` to imports to accommodate incoming purrr release.
 
 
 giphyr 0.1.0
