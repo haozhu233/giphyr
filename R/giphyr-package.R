@@ -10,6 +10,7 @@
 #' @importFrom rstudioapi insertText
 #' @importFrom utils download.file
 #' @importFrom purrr map_df
+#' @importFrom dplyr bind_rows
 #' @name giphyr-package
 #' @aliases giphyr
 #' @docType package

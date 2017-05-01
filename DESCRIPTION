@@ -17,6 +17,7 @@ Imports:
     tibble,
     rstudioapi,
     utils,
+    dplyr,
     purrr
 License: MIT + file LICENSE
 Encoding: UTF-8
