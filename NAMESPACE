@@ -2,12 +2,10 @@
 
 export(add_gifs)
 export(gif_search)
+import(miniUI)
 importFrom(dplyr,bind_rows)
 importFrom(httr,GET)
 importFrom(httr,content)
-importFrom(miniUI,gadgetTitleBar)
-importFrom(miniUI,miniContentPanel)
-importFrom(miniUI,miniPage)
 importFrom(purrr,map_df)
 importFrom(rstudioapi,insertText)
 importFrom(shiny,HTML)

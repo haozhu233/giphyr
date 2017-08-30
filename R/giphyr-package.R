@@ -6,7 +6,7 @@
 #' HTML observeEvent stopApp dialogViewer runGadget uiOutput actionLink icon
 #' reactiveValues reactive includeCSS includeScript tags img addResourcePath
 #' radioButtons textOutput renderText shinyApp
-#' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
+#' @import miniUI
 #' @importFrom rstudioapi insertText
 #' @importFrom utils download.file
 #' @importFrom purrr map_df
