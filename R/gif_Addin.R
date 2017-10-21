@@ -178,7 +178,7 @@ add_gifs_server <- function(input, output, session) {
 
   find_ele <- function(x, name) {
     x_names <- names(x)
-    return(x[which(x_names == name)])
+    return(x[which(x_names == name)][[1]])
   }
 
   output$preview <- renderUI({
