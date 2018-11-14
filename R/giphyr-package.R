@@ -9,7 +9,7 @@
 #' @import miniUI
 #' @importFrom rstudioapi insertText
 #' @importFrom utils download.file
-#' @importFrom purrr map_df
+#' @importFrom purrr map_df map
 #' @importFrom dplyr bind_rows
 #' @name giphyr-package
 #' @aliases giphyr

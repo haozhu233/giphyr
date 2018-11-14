@@ -7,10 +7,11 @@
 gif_search(query, limit = 10, offset = 0, rating = "g",
   img_format = c("fixed_height", "fixed_height_still",
   "fixed_height_downsampled", "fixed_width", "fixed_width_still",
-  "fixed_width_downsampled", "fixed_height_small", "fixed_height_small_still",
-  "fixed_width_small", "fixed_width_small_still", "downsized",
-  "downsized_still", "downsized_large", "downsized_medium", "original",
-  "original_still", "preview_gif", "fixed_height_mp4", "fixed_width_mp4",
+  "fixed_width_downsampled", "fixed_height_small",
+  "fixed_height_small_still", "fixed_width_small",
+  "fixed_width_small_still", "downsized", "downsized_still",
+  "downsized_large", "downsized_medium", "original", "original_still",
+  "preview_gif", "fixed_height_mp4", "fixed_width_mp4",
   "fixed_height_small_mp4", "fixed_width_small_mp4", "original_mp4",
   "looping_mp4", "preview_mp4", "downsized_small_mp4"))
 }

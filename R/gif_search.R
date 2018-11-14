@@ -111,8 +111,12 @@ search_query_parser <- function(x) {
 }
 
 content_exporter <- function(x) {
+  non_scalar <- map_df(x$data, ~map(.x, length))
+  non_scalar <- unlist(map(non_scalar, ~mean(.x, na.rm = T) == 1))
+  non_scalar <- non_scalar[!non_scalar]
+  non_scalar <- names(non_scalar)
   map_df(x$data, ~c(
-    .x[which(!names(.x) %in% c("images", "user"))],
+    .x[which(!names(.x) %in% non_scalar)],
     gif_url(.x$images),
     mp4_url(.x$images))
   )
