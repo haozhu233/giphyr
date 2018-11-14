@@ -31,3 +31,5 @@ For useRs who are not using RStudio, I'm planning to include a stand-alone shiny
 
 ## Note
 I'm currently using the public beta key for the Giphy API. They say there is a rate limit. I will request a Production key if needed. 
+
+Also, I noticed that after GIPHY made some API change recently (the link is no longer point directly to a .gif file but a web page), GIF images can't be seen correctly on some old versions of RStudio. You might need to update your RStudio version if it occurs to you. 
