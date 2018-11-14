@@ -314,8 +314,7 @@ add_gifs_server <- function(input, output, session) {
 gif_Addin <- function() {
   addResourcePath("rsc",
                   system.file("gadgets/gif_Addin", package = "giphyr"))
-  viewer <- dialogViewer("Add GIFs", width = 800, height = 600)
-  runGadget(add_gifs_ui, add_gifs_server, viewer = viewer)
+  runGadget(add_gifs_ui, add_gifs_server, viewer = paneViewer())
 }
 
 #' Add GIFs through a shiny app
