@@ -102,7 +102,7 @@ gif_search <- function(query, limit = 10, offset = 0, rating = "g",
   return(out)
 }
 
-.giphy_api_key <- function()"dc6zaTOxFJmzC"
+.giphy_api_key <- function()"GAUeYalixQovJJGRACGEaKRpNunOoH1q"
 
 .giphy_url <- function()"http://api.giphy.com/"
 

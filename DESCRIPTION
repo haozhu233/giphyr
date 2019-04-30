@@ -1,6 +1,6 @@
 Package: giphyr
 Title: R Interface to the Giphy API
-Version: 0.1.3
+Version: 0.2.0
 Authors@R: person("Hao", "Zhu", email = "haozhu233@gmail.com", 
     role = c("aut", "cre"),
     comment = c(ORCID = '0000-0002-3386-6076'))
